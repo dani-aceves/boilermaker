@@ -10,5 +10,5 @@ export default createStore(
   dummyReducer,
   applyMiddleware(
     thunkMiddleware,
-    createLogger()
+    createLogger({collapsed: true})
   ));

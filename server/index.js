@@ -1,5 +1,6 @@
 const app = require('./app')
 const { db } = require('./db')
+const seed = require('../seed')
 
 const PORT = process.env.PORT || 3000;
 
