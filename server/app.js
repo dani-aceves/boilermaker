@@ -6,9 +6,6 @@ app.use(morgan('dev'));
 
 app.use(express.static(path.join(__dirname, '..', 'public')))
 
-// const bodyParser = require('body-parser');
-// app.use(bodyParser.json());
-// app.use(bodyParser.urlenconded({extended: true }));
 app.use(express.json())
 
 app.use('/api', require('./apiRoutes'))
