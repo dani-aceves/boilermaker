@@ -1,8 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { Provider } from 'react-redux' //to be used later with a redux store
+import { Provider } from 'react-redux'
+import store from './store/reducer'
 
 ReactDOM.render(
-  <div>Hello,World</div>,
+  <Provider store = {store}>
+  <div>Hello,World</div>
+  </Provider>,
   document.getElementById('app')
 )
