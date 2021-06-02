@@ -24,7 +24,7 @@ router.get('/', async (req, res, next) => {
   }
 })
 
-router.post('/login', async ( req, res, next) => {
+router.post('/auth/login', async ( req, res, next) => {
   try {
     res.send({token: await User.authenticate(req.body)})
   } catch (error) {
@@ -32,7 +32,7 @@ router.post('/login', async ( req, res, next) => {
   }
 })
 
-router.post('/signup', async (req, res, next) => {
+router.post('/auth/signup', async (req, res, next) => {
   try {
     const user = await User.create(req.body)
     res.send({token: await user.generateToken()})

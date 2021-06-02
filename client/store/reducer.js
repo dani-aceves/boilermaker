@@ -39,7 +39,7 @@ export const createAuth = () => {
 export const authenticate = (username, password, method) => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.post(`/auth/${method}`, {username, password});
+      const { data } = await axios.post(`/api/users/auth/${method}`, {username, password});
       window.localStorage.setItem(TOKEN, data.token);
       dispatch(createAuth())
     } catch (error) {
@@ -67,7 +67,7 @@ const reducer = (state = {}, action) => {
 }
 
 export default createStore(
-  dummyReducer,
+  reducer,
   applyMiddleware(
     thunkMiddleware,
     createLogger({collapsed: true})
