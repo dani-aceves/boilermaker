@@ -12,6 +12,7 @@ class Authentication extends React.Component {
     const username = evt.target.username.value
     const password = evt.target.password.value
     const form = evt.target.name
+    console.log( username , password, form)
     this.props.auth(username, password, form);
   }
 render(){

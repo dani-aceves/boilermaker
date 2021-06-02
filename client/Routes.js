@@ -4,6 +4,7 @@ import { withRouter, Route, Switch, Redirect } from 'react-router-dom'
 import HomePage from './components/HomePage'
 import { Login, Signup } from './components/Authentication'
 import { createAuth } from './store/reducer'
+import regeneratorRuntime from "regenerator-runtime"
 
 class Routes extends React.Component{
   componentDidMount(){
@@ -12,6 +13,7 @@ class Routes extends React.Component{
 
   render(){
     const loggedIn = this.props.isLoggedIn
+    console.log(loggedIn);
     return (
       <div>
         {loggedIn ? (
