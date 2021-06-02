@@ -3,6 +3,8 @@ const db = require('../db')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 const axios = require('axios')
+const SECRET = process.env.JWT;
+console.log(SECRET);
 
 const SALT_ROUNDS = 5;
 
@@ -22,17 +24,17 @@ const User = db.define('user', {
 })
 
 //compares the plain text version of the password to the hased version saved in the database
-User.prototype.correctPassword = (userPwd) => {
+User.prototype.correctPassword = function (userPwd) {
   return bcrypt.compare(userPwd, this.password);
 }
 
 //create a token for each user
-User.prototype.generateToken = () => {
-  return jwt.sign( {id: this.id }, process.env.JWT )
+User.prototype.generateToken = function () {
+  return jwt.sign( {id: this.id }, SECRET )
 }
 
 User.authenticate = async ( {username, password} ) => {
-  const user = await this.findOne({where: {username}})
+  const user = await User.findOne({where: { username }})
   if(!user || !(await user.correctPassword(password))){
     const error = new Error('Incorrect username or password');
     error.status = 401;
@@ -43,7 +45,7 @@ User.authenticate = async ( {username, password} ) => {
 
 User.findByToken = async (token) => {
   try {
-    const { id } = await jwt.verify(token, process.env.JWT);
+    const { id } = await jwt.verify(token, SECRET);
     const user = User.findByPk(id);
     if(!user){
       throw 'no user with this token'
@@ -61,4 +63,7 @@ const hashPassword = async (user) => {
   }
 }
 
+User.beforeCreate( async (user) => {
+  await hashPassword(user);
+})
 module.exports = User;
