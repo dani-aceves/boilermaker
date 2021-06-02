@@ -4,7 +4,6 @@ const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 const axios = require('axios')
 const SECRET = process.env.JWT;
-console.log(SECRET);
 
 const SALT_ROUNDS = 5;
 
