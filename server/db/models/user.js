@@ -4,6 +4,8 @@ const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 const axios = require('axios')
 const SECRET = process.env.JWT;
+//const regeneratorRuntime = require( "regenerator-runtime" )
+
 
 const SALT_ROUNDS = 5;
 
