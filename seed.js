@@ -28,7 +28,7 @@ const restaurants = [
 const seed = async () => {
   try {
     await db.sync({force: true})
-    console.log('db synced!')
+    //console.log('db synced!')
 
     const [dani, ale, nicole] = await Promise.all(users.map(user => {
       return User.create(user);
@@ -44,8 +44,8 @@ const seed = async () => {
     await taco.addUser(nicole)
     await sushi.addUser(nicole)
     await sushi.addUser(dani)
-    console.log(`seeded ${users.length} users`)
-    console.log(`seeded successfully`)
+   // console.log(`seeded ${users.length} users`)
+    //console.log(`seeded successfully`)
 
     return [dani,ale,nicole,bowl,taco,sushi]
   } catch (error) {
@@ -54,16 +54,16 @@ const seed = async () => {
 }
 
 async function runSeed() {
-  console.log('seeding...')
+  //console.log('seeding...')
   try {
     await seed()
   } catch (err) {
-    console.error(err)
+    //console.error(err)
     process.exitCode = 1
   } finally {
-    console.log('closing db connection')
+    //console.log('closing db connection')
     await db.close()
-    console.log('db connection closed')
+    //console.log('db connection closed')
   }
 }
 

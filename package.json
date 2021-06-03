@@ -7,7 +7,7 @@
     "start": "node server",
     "start-dev": "webpack -w & JWT=shh nodemon server",
     "seed": "node seed.js",
-    "test": "mocha ./test/*.spec.js --require @babel/register --require esm",
+    "test": "JWT=a_secret mocha ./test/*.spec.js --require @babel/register --require esm",
     "test:dev": "npm run test -- --watch"
   },
   "author": "",
