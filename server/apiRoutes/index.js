@@ -5,6 +5,7 @@ router.use('/users', require('./users'))
 
 //error handling middleware
 router.use((req, res, next) => {
+  console.log('is this being called')
   const error = new Error('Not Found')
   error.status = 404
   next(error)

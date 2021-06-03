@@ -10,7 +10,6 @@ class Routes extends React.Component{
   componentDidMount(){
     this.props.loadData()
   }
-
   render(){
     const loggedIn = this.props.isLoggedIn
     console.log(loggedIn);
@@ -23,7 +22,7 @@ class Routes extends React.Component{
           </Switch>
         ) : (
           <Switch>
-            <Route exact path = '/'component = { Login } />
+            <Route path = '/' exact component = { Login } />
             <Route path = '/login'component = { Login } />
             <Route path = '/signup'component = { Signup } />
           </Switch>

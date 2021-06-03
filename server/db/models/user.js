@@ -45,10 +45,11 @@ User.authenticate = async ( {username, password} ) => {
 User.findByToken = async (token) => {
   try {
     const { id } = await jwt.verify(token, SECRET);
-    const user = User.findByPk(id);
+    const user = await User.findByPk(id);
     if(!user){
       throw 'no user with this token'
     }
+    return user;
   } catch (err) {
     const error = new Error('not a valid token');
     error.status = 401;
