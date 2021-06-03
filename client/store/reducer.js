@@ -3,6 +3,7 @@ import { createLogger } from 'redux-logger'
 import thunkMiddleware from 'redux-thunk'
 import regeneratorRuntime from "regenerator-runtime"
 import axios from 'axios'
+import history from '../history'
 
 const TOKEN = 'token';
 
@@ -51,7 +52,7 @@ export const authenticate = (username, password, method) => {
 }
 
 export const logout = () => {
-  window.localStorage.removeItem(TOKEN);
+  window.localStorage.removeItem(TOKEN)
   history.push('/login')
   return {
     type: SET_AUTH,

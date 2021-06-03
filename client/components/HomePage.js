@@ -4,11 +4,14 @@ import { logout } from '../store/reducer'
 
 export const HomePage = (props) => {
   const username = props.username;
+  const handleClick = props.handleClick;
 
   return (
     <div>
       <h3>Welcome, {username}</h3>
-      <a href = '#' onClick = {props.logoutUser}>Logout</a>
+      <a href="#" onClick={handleClick}>
+            Logout
+          </a>
     </div>
   )
 }
@@ -19,10 +22,12 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatch = dispatch => {
   return {
-    logoutUser: () => dispatch(logout())
+    handleClick() {
+      dispatch(logout())
+    }
   }
 }
 
-export default connect(mapStateToProps)(HomePage);
+export default connect(mapStateToProps, mapDispatch)(HomePage);
