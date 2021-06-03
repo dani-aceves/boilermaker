@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { authenticate } from '../store/reducer'
+import NavBar from './NavBar'
 
 class Authentication extends React.Component {
   constructor(){
@@ -12,13 +13,13 @@ class Authentication extends React.Component {
     const username = evt.target.username.value
     const password = evt.target.password.value
     const form = evt.target.name
-    console.log( username , password, form)
     this.props.auth(username, password, form);
   }
 render(){
   const {name, displayName, error} = this.props
   return (
     <div>
+      <NavBar />
       <form onSubmit = {this.handleSubmit} name = {name} >
         <div>
           <label htmlFor = "username" >
