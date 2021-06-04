@@ -20,5 +20,48 @@ describe('User model', () => {
         expect(id).to.equal(dani.id);
       })
     })
+
+    describe('authenticate', () => {
+      let user;
+      beforeEach(async()=> user = await User.create({
+        username: 'lucy',
+        password: 'lucypw'
+      }));
+
+      describe('with correct credentials', () => {
+        it('returns back a token', async () => {
+          const token = await User.authenticate({
+            username: 'lucy',
+            password: 'lucypw'
+          })
+          expect(token).to.be.ok
+        })
+      })
+
+      describe('with incorrect username or password', () => {
+        it('throws a 401 error', async () => {
+          try {
+            await User.authenticate({
+              username: 'larry',
+              password: 'wrongpassword'
+            });
+            throw 'nooooo'
+          } catch (error) {
+            expect(error.status).to.equal(401)
+          }
+        })
+      })
+    })
+
+    describe('password hashin', () => {
+      it('hashes the password before creating the user', async () => {
+        const jerry = User.create({
+          username: 'Jerry',
+          password: 'jerrypw'
+        })
+
+        expect(jerry.password).to.not.equal('jerrypw')
+      })
+    })
   })
 })
