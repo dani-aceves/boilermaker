@@ -23,6 +23,7 @@
     "chai-things": "^0.2.0",
     "css-loader": "^5.2.6",
     "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.6",
     "esm": "^3.2.25",
     "mocha": "^8.4.0",
     "react-addons-test-utils": "^15.6.2",
