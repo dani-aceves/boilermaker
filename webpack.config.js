@@ -1,5 +1,4 @@
 module.exports = {
-  mode: 'development',
   entry: [
     './client/index.js'
   ],
@@ -19,10 +18,6 @@ module.exports = {
             '@babel/preset-react'
           ]
         }
-      },
-      {
-        test: /\.css$/,
-        use: ['style-loader','css-loader']
       }
     ]
   }
