@@ -25,13 +25,6 @@ const init = async () => {
   });
 
 
-  setInterval(() => {
-    wss.clients.forEach((client) => {
-      client.send(new Date().toTimeString());
-    });
-  }, 1000);
-
-
   } catch (ex) {
     console.log(ex)
   }
