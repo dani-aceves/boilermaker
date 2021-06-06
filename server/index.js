@@ -1,8 +1,10 @@
 const app = require('./app')
 const { db } = require('./db')
 const seed = require('../seed')
+const { Server } = require('ws');
 
 const PORT = process.env.PORT || 3000;
+
 
 const init = async () => {
   try {
@@ -13,10 +15,31 @@ const init = async () => {
       await db.sync()
     }
     // start listening (and create a 'server' object representing our server)
-    app.listen(PORT, () => console.log(`Server is listening on port ${PORT}`))
+    const server = app.listen(PORT, () => console.log(`Server is listening on port ${PORT}`))
+
+    const wss = new Server({ server });
+
+    wss.on('connection', (ws) => {
+    console.log('Client connected');
+    ws.on('close', () => console.log('Client disconnected'));
+  });
+
+
+  setInterval(() => {
+    wss.clients.forEach((client) => {
+      client.send(new Date().toTimeString());
+    });
+  }, 1000);
+
+
   } catch (ex) {
     console.log(ex)
   }
 }
+
+
+
+
+
 
 init()
